@@ -1,6 +1,6 @@
 baseurl: /
 languageCode: en-us
-title: A Hugo website
+title: Jordan Krogmann
 theme: hugo-lithium
 googleAnalytics: ''
 disqusShortname: ''
@@ -14,10 +14,10 @@ permalinks:
   post: /:year/:month/:day/:slug/
 menu:
   main:
-    - name: About
-      url: /about/
+    - name: Author
+      url: /author/
     - name: GitHub
-      url: https://github.com/rstudio/blogdown
+      url: https://github.com/Jordan-Krogmann
     - name: Twitter
       url: https://twitter.com/rstudio
 params:
