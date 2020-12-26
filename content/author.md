@@ -1,5 +1,5 @@
 ---
-date: "2016-05-05T21:48:51-07:00"
+date: "2020-01-05T21:48:51-07:00"
 title: About Me
 ---
 
@@ -22,7 +22,7 @@ INSERT IMAGE
 
 <br>
 
-I am still at Southern New Hampshire University as a Senior Data Scientist working on business problems like forecasting, funnel optimization, growth hacking, NLP, and anything daffy that comes up.  Thanks for reading :)
+I am still at Southern New Hampshire University as a Senior Data Scientist working on business problems like forecasting, funnel optimization, growth hacking, NLP, and anything daffy that comes up.  Thanks for reading & I'll buy you a beer at the next conference :)
 
 
 
