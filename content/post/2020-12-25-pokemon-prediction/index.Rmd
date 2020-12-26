@@ -1,0 +1,11 @@
+---
+title: Pokemon Prediction
+author: Jordan
+date: '2020-12-25'
+slug: pokemon-prediction
+categories:
+  - R
+tags:
+  - Classification
+  - Tidymodels
+---
