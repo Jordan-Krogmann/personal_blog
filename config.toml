@@ -1,7 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "Jordan Krogmann"
-description = "An easy reading blog for all things math, data science, and sarcasm."
+description = "An easy reading blog for all things math, programming, and sarcasm."
 theme = "min_night"
 disqusShortname = ""
 googleAnalytics = ""
@@ -12,7 +12,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "public/"]
 
 [params]
     author = "Jordan Krogmann"
-    description = "An easy reading blog for all things math, data science, and sarcasm."
+    description = "An easy reading blog for all things math, programming, and sarcasm."
     logo = "favicon/android-chrome-192x192.png"
     twitterAuthor = "@jordan_krogmann"
     githubUsername = "jordan-krogmann"
