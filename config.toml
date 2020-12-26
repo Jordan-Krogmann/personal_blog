@@ -1,7 +1,7 @@
 baseURL = "/"
 languageCode = "en-us"
 title = "min_night"
-description = "An easy reading Hugo blog with night-mode."
+description = "An easy reading blog for all things data science."
 theme = "min_night"
 disqusShortname = ""
 googleAnalytics = ""
@@ -11,11 +11,11 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "public/"]
     post = "/:year/:month/:day/:slug/"
 
 [params]
-    author = "Nate Day"
-    description = "An easy reading Hugo blog with night-mode."
+    author = "Jordan Krogmann"
+    description = "An easy reading blog for all things data science."
     logo = "favicon/android-chrome-192x192.png"
-    twitterAuthor = "@natedayta"
-    githubUsername = "nathancday"
+    twitterAuthor = "@jordan_krogmann"
+    githubUsername = "jordan-krogmann"
     accent = "#386890" # dark colors do best
     backgroundColor = "#f5f5f5"
     font = "Mina" # should match the name on Google Fonts!
@@ -49,26 +49,23 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "public/"]
 # The list of available icons can be found at http://fontawesome.io/icons/
 
 [[menu.icon]]
-    url = "mailto:nathancday@gmail.com"
+    url = "mailto:jordanckrogmann@gmail.com"
     name = "far fa-envelope"
     weight = 1
 
 [[menu.icon]]
-    url = "https://github.com/NathanCDay"
+    url = "https://github.com/Jordan-Krogmann"
     name = "fab fa-github"
     weight = 2
 
 [[menu.icon]]
-    url = "https://twitter.com/natedayta/"
+    url = "https://twitter.com/jordan_krogmann"
     name = "fab fa-twitter"
     weight = 3
 
 [[menu.icon]]
-    url = "https://www.linkedin.com/in/nathan-day-59b48435/"
+    url = "https://www.linkedin.com/in/jordan-krogmann-41ab348a/"
     name = "fab fa-linkedin"
     weight = 4
 
-[[menu.icon]]
-    url = "https://www.stackoverflow.com/users/5878751/nate"
-    name = "fab fa-stack-overflow"
-    weight = 5
+
