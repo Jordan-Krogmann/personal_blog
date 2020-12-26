@@ -11,7 +11,7 @@ tags:
   - Tidyverse
 ---
 
-# Overview
+## Overview <img src="https://raw.githubusercontent.com/Jordan-Krogmann/pokemon/master/imgs/charizard.png" align="right" width="120" />
 
 I grew up playing the original version of Pokemon on my gray brick of a Gameboy, so what would be a better way to re-live my childhood other than digging through the data.  Let's try predicting whether or not a Pokemon is legendary based off their attributes.  Historically, I have used the `Caret` package as my modeling framework, but we will use the more modern `Tidymodels` suite of packages made by Max Kuhn & Rstudio Team.
 
