@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Tidymodels on Jordan Krogmann</title>
+    <link>/tags/tidymodels/</link>
+    <description>Recent content in Tidymodels on Jordan Krogmann</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>en-us</language>
+    <lastBuildDate>Fri, 25 Dec 2020 00:00:00 +0000</lastBuildDate><atom:link href="/tags/tidymodels/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Pokemon Prediction</title>
+      <link>/2020/12/25/pokemon-prediction/</link>
+      <pubDate>Fri, 25 Dec 2020 00:00:00 +0000</pubDate>
+      
+      <guid>/2020/12/25/pokemon-prediction/</guid>
+      <description>Overview I grew up playing the original version of Pokemon on my gray brick of a Gameboy, so what would be a better way to re-live my childhood other than digging through the data. Let’s try predicting whether or not a Pokemon is legendary based off their attributes. Historically, I have used the Caret package as my modeling framework, but we will use the more modern Tidymodels suite of packages made by Max Kuhn &amp;amp; Rstudio Team.</description>
+    </item>
+    
+  </channel>
+</rss>

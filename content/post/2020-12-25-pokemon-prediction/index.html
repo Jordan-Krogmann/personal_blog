@@ -72,29 +72,41 @@ head(pokemon_df, 3)</code></pre>
 <pre class="r"><code>pokemon_df &lt;- pokemon_df %&gt;% 
   mutate(type2 = case_when(is.na(type2) ~ &quot;none&quot;, TRUE ~ type2)) %&gt;%
   mutate(two_types_flag = case_when(type2 == &quot;none&quot; ~ 0, TRUE ~ 1)) %&gt;% 
-  mutate(bug_type      = case_when(type1  == &quot;bug&quot; | type2 == &quot;bug&quot; ~ 1, TRUE ~ 0),
-         dark_type     = case_when(type1  == &quot;dark&quot; | type2 == &quot;dark&quot; ~ 1, TRUE ~ 0),
-         dragon_type   = case_when(type1  == &quot;dragon&quot; | type2 == &quot;dragon&quot; ~ 1, TRUE ~ 0),
+  mutate(bug_type = case_when(type1  == &quot;bug&quot; | type2 == &quot;bug&quot; ~ 1, TRUE ~ 0),
+         dark_type = case_when(type1  == &quot;dark&quot; | type2 == &quot;dark&quot; ~ 1, TRUE ~ 0),
+         dragon_type = case_when(type1  == &quot;dragon&quot; | type2 == &quot;dragon&quot; ~ 1, TRUE ~ 0),
          electric_type = case_when(type1  == &quot;electric&quot; | type2 == &quot;electric&quot; ~ 1, TRUE ~ 0),
-         fairy_type    = case_when(type1  == &quot;fairy&quot; | type2 == &quot;fairy&quot; ~ 1, TRUE ~ 0),
+         fairy_type = case_when(type1  == &quot;fairy&quot; | type2 == &quot;fairy&quot; ~ 1, TRUE ~ 0),
          fighting_type = case_when(type1  == &quot;fighting&quot; | type2 == &quot;fighting&quot; ~ 1, TRUE ~ 0),
-         fire_type     = case_when(type1  == &quot;fire&quot; | type2 == &quot;fire&quot; ~ 1, TRUE ~ 0),
-         flying_type   = case_when(type1  == &quot;flying&quot; | type2 == &quot;flying&quot; ~ 1, TRUE ~ 0),
-         ghost_type    = case_when(type1  == &quot;ghost&quot; | type2 == &quot;ghost&quot; ~ 1, TRUE ~ 0),
-         grass_type    = case_when(type1  == &quot;grass&quot; | type2 == &quot;grass&quot; ~ 1, TRUE ~ 0),
-         ground_type   = case_when(type1  == &quot;ground&quot; | type2 == &quot;ground&quot; ~ 1, TRUE ~ 0),
-         ice_type      = case_when(type1  == &quot;ice&quot; | type2 == &quot;ice&quot; ~ 1, TRUE ~ 0),
-         normal_type   = case_when(type1  == &quot;normal&quot; | type2 == &quot;normal&quot; ~ 1, TRUE ~ 0),
-         poison_type   = case_when(type1  == &quot;poison&quot; | type2 == &quot;poison&quot; ~ 1, TRUE ~ 0),
-         psychic_type  = case_when(type1  == &quot;psychic&quot; | type2 == &quot;psychic&quot; ~ 1, TRUE ~ 0),
-         rock_type     = case_when(type1  == &quot;rock&quot; | type2 == &quot;rock&quot; ~ 1, TRUE ~ 0),
-         steel_type    = case_when(type1  == &quot;steel&quot; | type2 == &quot;steel&quot; ~ 1, TRUE ~ 0),
-         water_type    = case_when(type1  == &quot;water&quot; | type2 == &quot;water&quot; ~ 1, TRUE ~ 0))</code></pre>
+         fire_type = case_when(type1  == &quot;fire&quot; | type2 == &quot;fire&quot; ~ 1, TRUE ~ 0),
+         flying_type = case_when(type1  == &quot;flying&quot; | type2 == &quot;flying&quot; ~ 1, TRUE ~ 0),
+         ghost_type = case_when(type1  == &quot;ghost&quot; | type2 == &quot;ghost&quot; ~ 1, TRUE ~ 0),
+         grass_type = case_when(type1  == &quot;grass&quot; | type2 == &quot;grass&quot; ~ 1, TRUE ~ 0),
+         ground_type = case_when(type1  == &quot;ground&quot; | type2 == &quot;ground&quot; ~ 1, TRUE ~ 0),
+         ice_type = case_when(type1  == &quot;ice&quot; | type2 == &quot;ice&quot; ~ 1, TRUE ~ 0),
+         normal_type = case_when(type1  == &quot;normal&quot; | type2 == &quot;normal&quot; ~ 1, TRUE ~ 0),
+         poison_type = case_when(type1  == &quot;poison&quot; | type2 == &quot;poison&quot; ~ 1, TRUE ~ 0),
+         psychic_type = case_when(type1  == &quot;psychic&quot; | type2 == &quot;psychic&quot; ~ 1, TRUE ~ 0),
+         rock_type = case_when(type1  == &quot;rock&quot; | type2 == &quot;rock&quot; ~ 1, TRUE ~ 0),
+         steel_type = case_when(type1  == &quot;steel&quot; | type2 == &quot;steel&quot; ~ 1, TRUE ~ 0),
+         water_type = case_when(type1  == &quot;water&quot; | type2 == &quot;water&quot; ~ 1, TRUE ~ 0))</code></pre>
 <p><br></p>
 <p>Here we will be needing a training &amp; testing set for modeling. I am going to use the first six generations of Pokemon to train our models and hold out the seventh generation to test them.</p>
+<pre class="r"><code>train_df &lt;- pokemon_df %&gt;% filter(generation != 7)
+test_df &lt;- pokemon_df %&gt;% filter(generation == 7)</code></pre>
+<p><br>
+<br></p>
 </div>
-<div id="eda" class="section level2">
+<div id="eda" class="section level2 tabset tabset-fade tabset-pills">
 <h2>EDA</h2>
+<div id="plot-1" class="section level3">
+<h3>Plot 1</h3>
+<p>1</p>
+</div>
+<div id="plot-2" class="section level3">
+<h3>Plot 2</h3>
+<p>2</p>
+</div>
 </div>
 <div id="modeling" class="section level2">
 <h2>Modeling</h2>

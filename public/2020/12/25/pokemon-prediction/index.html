@@ -1,0 +1,359 @@
+<!DOCTYPE html>
+<html lang="en-us">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Pokemon Prediction</title>
+        <link rel="canonical" href="/2020/12/25/pokemon-prediction/">
+        <style>
+
+    html body {
+        font-family: 'Mina', sans-serif;
+        background-color: #f5f5f5;
+    }
+
+    :root {
+        --accent: #386890;
+        --border-width:  0 ;
+    }
+
+</style>
+
+
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Mina">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css?family=VT323">
+
+
+ <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/styles/lakeside-light.min.css"> 
+
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.0/css/all.css" integrity="sha384-Mmxa0mLqhmOeaE8vgOSbKacftZcsNYDjQzuCOm6D02luYSzBG8vpaOykv9lFQ51Y" crossorigin="anonymous">
+
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+
+
+ 
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/highlight.min.js"></script>
+
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/r.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/bash.min.js"></script>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.12.0/languages/go.min.js"></script>
+    
+
+    <script>hljs.initHighlightingOnLoad();</script>
+
+
+
+
+
+
+
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+
+<link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+<script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
+
+
+<script>$(document).on('click', function() { $('.collapse').collapse('hide'); })</script>
+
+
+<script>
+$(document).ready(function(){
+    
+  var input = $('#night-mode-toggle');
+  var container = $('#bigbody');
+  var stat = $('#button-status');
+  
+  container.toggleClass(localStorage.toggled);
+  stat.bootstrapToggle(localStorage.button).change();
+  
+  input.on('click', function() {
+      if (localStorage.toggled != "-nightmode" ) {
+          container.toggleClass("-nightmode", true );
+          localStorage.toggled = "-nightmode";
+          localStorage.button = "on";
+       } else {
+          container.toggleClass("-nightmode", false );
+          localStorage.toggled = "";
+          localStorage.button = "off"
+       }
+  })
+});
+</script>
+ <meta name="generator" content="Hugo 0.79.0" />
+        <link href="" rel="alternate" type="application/rss+xml" title="Jordan Krogmann" />
+        <link href="" rel="feed" type="application/rss+xml" title="Jordan Krogmann" />
+        
+
+    
+    <link rel="apple-touch-icon" sizes="180x180" href="/img/favicon/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/img/favicon/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/img/favicon/favicon-16x16.png">
+    <link rel="manifest" href="/img/favicon/site.webmanifest">
+    <link rel="mask-icon" href="/img/favicon/safari-pinned-tab.svg" color="#000000">
+    <link rel="shortcut icon" href="/img/favicon/favicon.ico">
+    <meta name="msapplication-TileColor" content="#2b5797">
+    <meta name="msapplication-config" content="/img/favicon/browserconfig.xml">
+    <meta name="theme-color" content="#ffffff">
+    
+    
+    
+    <meta property="og:title" content="Pokemon Prediction">
+    <meta property="og:type" content="article">
+      
+      <meta name="twitter:card" content="summary">
+      <meta name="twitter:image" content="/favicon/android-chrome-192x192.png" >
+      
+    <meta property="description" content="">
+    <meta property="og:description" content="">
+    
+    <meta name="twitter:creator" content="">
+    <meta name="twitter:site" content="">
+    
+    </head>
+
+    
+    
+    <script type="text/javascript" async
+      src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+    </script>
+    
+
+    <body id = "bigbody">
+        <nav class="navbar navbar-default navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <a class="navbar-brand visible-xs" href="#">Pokemon Prediction</a>
+                    <button class="navbar-toggle" data-target=".navbar-collapse" data-toggle="collapse">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                </div>
+                <div class="collapse navbar-collapse">
+                    
+                        <ul class="nav navbar-nav">
+                            
+                                <li><a href="/">Home</a></li>
+                            
+                                <li><a href="/post/">Posts</a></li>
+                            
+                                <li><a href="/tags/">Tags</a></li>
+                            
+                                <li><a href="/author/">Author</a></li>
+                            
+                        </ul>
+                    
+                    
+                        <ul class="nav navbar-nav navbar-right">
+                            
+                                <li class="navbar-icon"><a href="mailto:jordanckrogmann@gmail.com"><i class="far fa-envelope"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://github.com/Jordan-Krogmann"><i class="fab fa-github"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://twitter.com/jordan_krogmann"><i class="fab fa-twitter"></i></a></li>
+                            
+                                <li class="navbar-icon"><a href="https://www.linkedin.com/in/jordan-krogmann-41ab348a/"><i class="fab fa-linkedin"></i></a></li>
+                            
+                            <li id="night-mode-toggle">
+    <input type="checkbox" id = "button-status"
+        data-toggle="toggle"
+        data-width = "10"
+        data-height = "1"
+        data-on="<i class='far fa-moon fa-lg'></i>"
+        data-off= "<i class='far fa-sun fa-lg'></i>"
+        data-style="ios"
+        data-onstyle = "default">
+</li>
+                        </ul>
+                    
+                </div>
+            </div>
+        </nav>
+
+
+<main>
+
+    <div class="item">
+
+    
+    
+    
+
+    
+    
+      
+    
+
+    <h4><a href="/2020/12/25/pokemon-prediction/">Pokemon Prediction</a></h4>
+    <h5>December 25, 2020 - 4 minutes</h5>
+    <h5></h5>
+
+    
+
+        <a href="/categories/r">
+        <kbd class="item-cat"> R </kbd>
+    </a>
+    
+    
+    <a href="/tags/classification">
+        <kbd class="item-tag"> Classification </kbd>
+    </a>
+    
+    <a href="/tags/tidymodels">
+        <kbd class="item-tag"> Tidymodels </kbd>
+    </a>
+    
+    <a href="/tags/tidyverse">
+        <kbd class="item-tag"> Tidyverse </kbd>
+    </a>
+    
+
+</div>
+
+
+    <br> <div class="text-justify">
+<link href="/2020/12/25/pokemon-prediction/index_files/anchor-sections/anchor-sections.css" rel="stylesheet" />
+<script src="/2020/12/25/pokemon-prediction/index_files/anchor-sections/anchor-sections.js"></script>
+
+
+<div id="overview" class="section level2">
+<h2>Overview <img src="https://raw.githubusercontent.com/Jordan-Krogmann/pokemon/master/imgs/charizard.png" align="right" width="120" /></h2>
+<p>I grew up playing the original version of Pokemon on my gray brick of a Gameboy, so what would be a better way to re-live my childhood other than digging through the data. Let’s try predicting whether or not a Pokemon is legendary based off their attributes. Historically, I have used the <code>Caret</code> package as my modeling framework, but we will use the more modern <code>Tidymodels</code> suite of packages made by Max Kuhn &amp; Rstudio Team.</p>
+<p>What we are going to cover:</p>
+<ul>
+<li>Set Up</li>
+<li>Data Wrangling</li>
+<li>Exploratory Data Analysis (EDA)</li>
+<li>Modeling</li>
+<li>Conclusion</li>
+</ul>
+<p><br>
+<br></p>
+</div>
+<div id="set-up" class="section level2">
+<h2>Set Up</h2>
+<p>We are going to be loading two meta packages <code>Tidyverse</code> for data manipulation, cleaning &amp; visualization and <code>Tidymodels</code> for model training &amp; evaluation.</p>
+<pre class="r"><code># If not installed unncomment below and run
+# install.packages(&quot;tidyverse&quot;, dependencies = TRUE)
+# install.packages(&quot;tidymodels&quot;, dependencies = TRUE)
+
+# if installed load
+library(tidyverse)  # plotting and data manipulation
+library(tidymodels) # tidy model framework</code></pre>
+<p><br>
+<br></p>
+</div>
+<div id="data-wrangling" class="section level2">
+<h2>Data Wrangling</h2>
+<p>We are going to need to load the data, so I store a csv of seven generations of Pokemon. The block below will import the data and then check to see if it worked.</p>
+<pre class="r"><code># import data from github
+pokemon_df &lt;- read_csv(&quot;https://raw.githubusercontent.com/Jordan-Krogmann/pokemon/master/data/pokemon.csv&quot;)
+
+# check top rows
+head(pokemon_df, 3)</code></pre>
+<pre><code>## # A tibble: 3 x 41
+##   abilities against_bug against_dark against_dragon against_electric
+##   &lt;chr&gt;           &lt;dbl&gt;        &lt;dbl&gt;          &lt;dbl&gt;            &lt;dbl&gt;
+## 1 [&#39;Overgr~           1            1              1              0.5
+## 2 [&#39;Overgr~           1            1              1              0.5
+## 3 [&#39;Overgr~           1            1              1              0.5
+## # ... with 36 more variables: against_fairy &lt;dbl&gt;, against_fight &lt;dbl&gt;,
+## #   against_fire &lt;dbl&gt;, against_flying &lt;dbl&gt;, against_ghost &lt;dbl&gt;,
+## #   against_grass &lt;dbl&gt;, against_ground &lt;dbl&gt;, against_ice &lt;dbl&gt;,
+## #   against_normal &lt;dbl&gt;, against_poison &lt;dbl&gt;, against_psychic &lt;dbl&gt;,
+## #   against_rock &lt;dbl&gt;, against_steel &lt;dbl&gt;, against_water &lt;dbl&gt;, attack &lt;dbl&gt;,
+## #   base_egg_steps &lt;dbl&gt;, base_happiness &lt;dbl&gt;, base_total &lt;dbl&gt;,
+## #   capture_rate &lt;chr&gt;, classfication &lt;chr&gt;, defense &lt;dbl&gt;,
+## #   experience_growth &lt;dbl&gt;, height_m &lt;dbl&gt;, hp &lt;dbl&gt;, japanese_name &lt;chr&gt;,
+## #   name &lt;chr&gt;, percentage_male &lt;dbl&gt;, pokedex_number &lt;dbl&gt;, sp_attack &lt;dbl&gt;,
+## #   sp_defense &lt;dbl&gt;, speed &lt;dbl&gt;, type1 &lt;chr&gt;, type2 &lt;chr&gt;, weight_kg &lt;dbl&gt;,
+## #   generation &lt;dbl&gt;, is_legendary &lt;dbl&gt;</code></pre>
+<p><br></p>
+<p>Next I am going to add/clean a few columns that I will need later, so don’t focus on the why. There is a probably a smarter way to construct the <code>two_types_flag</code>, but I got brain lazy (I will clean that up later).</p>
+<pre class="r"><code>pokemon_df &lt;- pokemon_df %&gt;% 
+  mutate(type2 = case_when(is.na(type2) ~ &quot;none&quot;, TRUE ~ type2)) %&gt;%
+  mutate(two_types_flag = case_when(type2 == &quot;none&quot; ~ 0, TRUE ~ 1)) %&gt;% 
+  mutate(bug_type      = case_when(type1  == &quot;bug&quot; | type2 == &quot;bug&quot; ~ 1, TRUE ~ 0),
+         dark_type     = case_when(type1  == &quot;dark&quot; | type2 == &quot;dark&quot; ~ 1, TRUE ~ 0),
+         dragon_type   = case_when(type1  == &quot;dragon&quot; | type2 == &quot;dragon&quot; ~ 1, TRUE ~ 0),
+         electric_type = case_when(type1  == &quot;electric&quot; | type2 == &quot;electric&quot; ~ 1, TRUE ~ 0),
+         fairy_type    = case_when(type1  == &quot;fairy&quot; | type2 == &quot;fairy&quot; ~ 1, TRUE ~ 0),
+         fighting_type = case_when(type1  == &quot;fighting&quot; | type2 == &quot;fighting&quot; ~ 1, TRUE ~ 0),
+         fire_type     = case_when(type1  == &quot;fire&quot; | type2 == &quot;fire&quot; ~ 1, TRUE ~ 0),
+         flying_type   = case_when(type1  == &quot;flying&quot; | type2 == &quot;flying&quot; ~ 1, TRUE ~ 0),
+         ghost_type    = case_when(type1  == &quot;ghost&quot; | type2 == &quot;ghost&quot; ~ 1, TRUE ~ 0),
+         grass_type    = case_when(type1  == &quot;grass&quot; | type2 == &quot;grass&quot; ~ 1, TRUE ~ 0),
+         ground_type   = case_when(type1  == &quot;ground&quot; | type2 == &quot;ground&quot; ~ 1, TRUE ~ 0),
+         ice_type      = case_when(type1  == &quot;ice&quot; | type2 == &quot;ice&quot; ~ 1, TRUE ~ 0),
+         normal_type   = case_when(type1  == &quot;normal&quot; | type2 == &quot;normal&quot; ~ 1, TRUE ~ 0),
+         poison_type   = case_when(type1  == &quot;poison&quot; | type2 == &quot;poison&quot; ~ 1, TRUE ~ 0),
+         psychic_type  = case_when(type1  == &quot;psychic&quot; | type2 == &quot;psychic&quot; ~ 1, TRUE ~ 0),
+         rock_type     = case_when(type1  == &quot;rock&quot; | type2 == &quot;rock&quot; ~ 1, TRUE ~ 0),
+         steel_type    = case_when(type1  == &quot;steel&quot; | type2 == &quot;steel&quot; ~ 1, TRUE ~ 0),
+         water_type    = case_when(type1  == &quot;water&quot; | type2 == &quot;water&quot; ~ 1, TRUE ~ 0))</code></pre>
+<p><br></p>
+<p>Here we will be needing a training &amp; testing set for modeling. I am going to use the first six generations of Pokemon to train our models and hold out the seventh generation to test them.</p>
+</div>
+<div id="eda" class="section level2">
+<h2>EDA</h2>
+</div>
+<div id="modeling" class="section level2">
+<h2>Modeling</h2>
+</div>
+<div id="conclusion" class="section level2">
+<h2>Conclusion</h2>
+</div>
+</div>
+
+    
+    
+
+    
+
+    
+
+    
+
+    
+
+</main>
+
+        <footer id = "bigfooter">
+            <div style = "padding:15px;">
+                <p>Powered by <a href="https://gohugo.io">Hugo</a>. Themed by <a href="https://github.com/nathancday/min_night">min_night</a>.
+                </p>
+                <a rel="license" href="https://creativecommons.org/licenses/by/4.0/"
+                title="Creative Commons Attribution 4.0 International license">
+                <i class="fab fa-creative-commons" aria-hidden="true"></i> Attribution 4.0 International license
+                </a>
+            </div>
+        </footer>
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id="></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments)};
+          gtag('js', new Date());
+          gtag('config', '');
+        </script>
+       
+    </body>
+
+</html>
+

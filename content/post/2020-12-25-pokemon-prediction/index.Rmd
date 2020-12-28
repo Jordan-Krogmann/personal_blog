@@ -65,24 +65,24 @@ Next I am going to add/clean a few columns that I will need later, so don't focu
 pokemon_df <- pokemon_df %>% 
   mutate(type2 = case_when(is.na(type2) ~ "none", TRUE ~ type2)) %>%
   mutate(two_types_flag = case_when(type2 == "none" ~ 0, TRUE ~ 1)) %>% 
-  mutate(bug_type      = case_when(type1  == "bug" | type2 == "bug" ~ 1, TRUE ~ 0),
-         dark_type     = case_when(type1  == "dark" | type2 == "dark" ~ 1, TRUE ~ 0),
-         dragon_type   = case_when(type1  == "dragon" | type2 == "dragon" ~ 1, TRUE ~ 0),
+  mutate(bug_type = case_when(type1  == "bug" | type2 == "bug" ~ 1, TRUE ~ 0),
+         dark_type = case_when(type1  == "dark" | type2 == "dark" ~ 1, TRUE ~ 0),
+         dragon_type = case_when(type1  == "dragon" | type2 == "dragon" ~ 1, TRUE ~ 0),
          electric_type = case_when(type1  == "electric" | type2 == "electric" ~ 1, TRUE ~ 0),
-         fairy_type    = case_when(type1  == "fairy" | type2 == "fairy" ~ 1, TRUE ~ 0),
+         fairy_type = case_when(type1  == "fairy" | type2 == "fairy" ~ 1, TRUE ~ 0),
          fighting_type = case_when(type1  == "fighting" | type2 == "fighting" ~ 1, TRUE ~ 0),
-         fire_type     = case_when(type1  == "fire" | type2 == "fire" ~ 1, TRUE ~ 0),
-         flying_type   = case_when(type1  == "flying" | type2 == "flying" ~ 1, TRUE ~ 0),
-         ghost_type    = case_when(type1  == "ghost" | type2 == "ghost" ~ 1, TRUE ~ 0),
-         grass_type    = case_when(type1  == "grass" | type2 == "grass" ~ 1, TRUE ~ 0),
-         ground_type   = case_when(type1  == "ground" | type2 == "ground" ~ 1, TRUE ~ 0),
-         ice_type      = case_when(type1  == "ice" | type2 == "ice" ~ 1, TRUE ~ 0),
-         normal_type   = case_when(type1  == "normal" | type2 == "normal" ~ 1, TRUE ~ 0),
-         poison_type   = case_when(type1  == "poison" | type2 == "poison" ~ 1, TRUE ~ 0),
-         psychic_type  = case_when(type1  == "psychic" | type2 == "psychic" ~ 1, TRUE ~ 0),
-         rock_type     = case_when(type1  == "rock" | type2 == "rock" ~ 1, TRUE ~ 0),
-         steel_type    = case_when(type1  == "steel" | type2 == "steel" ~ 1, TRUE ~ 0),
-         water_type    = case_when(type1  == "water" | type2 == "water" ~ 1, TRUE ~ 0))
+         fire_type = case_when(type1  == "fire" | type2 == "fire" ~ 1, TRUE ~ 0),
+         flying_type = case_when(type1  == "flying" | type2 == "flying" ~ 1, TRUE ~ 0),
+         ghost_type = case_when(type1  == "ghost" | type2 == "ghost" ~ 1, TRUE ~ 0),
+         grass_type = case_when(type1  == "grass" | type2 == "grass" ~ 1, TRUE ~ 0),
+         ground_type = case_when(type1  == "ground" | type2 == "ground" ~ 1, TRUE ~ 0),
+         ice_type = case_when(type1  == "ice" | type2 == "ice" ~ 1, TRUE ~ 0),
+         normal_type = case_when(type1  == "normal" | type2 == "normal" ~ 1, TRUE ~ 0),
+         poison_type = case_when(type1  == "poison" | type2 == "poison" ~ 1, TRUE ~ 0),
+         psychic_type = case_when(type1  == "psychic" | type2 == "psychic" ~ 1, TRUE ~ 0),
+         rock_type = case_when(type1  == "rock" | type2 == "rock" ~ 1, TRUE ~ 0),
+         steel_type = case_when(type1  == "steel" | type2 == "steel" ~ 1, TRUE ~ 0),
+         water_type = case_when(type1  == "water" | type2 == "water" ~ 1, TRUE ~ 0))
 ```
 
 <br>
@@ -90,12 +90,64 @@ pokemon_df <- pokemon_df %>%
 Here we will be needing a training & testing set for modeling.  I am going to use the first six generations of Pokemon to train our models and hold out the seventh generation to test them.
 
 ```{r prep-data}
+train_df <- pokemon_df %>% filter(generation != 7)
+test_df <- pokemon_df %>% filter(generation == 7)
+```
+
+<br>
+<br>
+
+## EDA 
+
+
+
+
+## Modeling
+
+### Define Recipes
+
+
+```{r create-recipes}
+logistic_rec <- recipe(is_legendary ~, data = train_df)
+
+
+xgboost_rec <- recipe(is_legendary ~, data = train_df)
+  
 
 ```
 
-## EDA
 
-## Modeling
+
+### Define Model Types
+
+```{r}
+# logistic Regression
+logistic_model <- multinom_reg(penalty = tune(), mixture = 1) %>% 
+  set_engine("glmnet") %>% 
+  set_mode("classification")
+
+# xgboost model
+xgboost_model <- boost_tree(trees = tune(), learn_rate = tune()) %>% 
+  set_engine("xgboost") %>% 
+  set_mode("classification")
+```
+
+### Define Grids
+
+```{r}
+logistic_grid <- grid_regular(parameters(logistic_model), levels = 3)
+xgboost_grid <- grid_regular(parameters(xgboost_model), levels = 3, filter = c(trees > 1))
+```
+
+### Define tuning process
+
+```{r}
+model_control <- control_grid(save_pred = TRUE)
+model_metrics <- metric_set(accuracy, sens, spec, mn_log_loss, roc_auc)
+```
+
+
+
 
 ## Conclusion
 
