@@ -62,7 +62,8 @@ head(pokemon_df, 3)
 Next I am going to add/clean a few columns that I will need later, so don't focus on the why.  There is a probably a smarter way to construct the `two_types_flag`, but I got brain lazy (I will clean that up later).   
 
 ```{r clean-data}
-pokemon_df <- pokemon_df %>% 
+pokemon_df <- 
+  pokemon_df %>% 
   mutate(type2 = case_when(is.na(type2) ~ "none", TRUE ~ type2)) %>%
   mutate(two_types_flag = case_when(type2 == "none" ~ 0, TRUE ~ 1)) %>% 
   mutate(bug_type = case_when(type1  == "bug" | type2 == "bug" ~ 1, TRUE ~ 0),
@@ -89,10 +90,7 @@ pokemon_df <- pokemon_df %>%
 
 Here we will be needing a training & testing set for modeling.  I am going to use the first six generations of Pokemon to train our models and hold out the seventh generation to test them.
 
-```{r prep-data}
-train_df <- pokemon_df %>% filter(generation != 7)
-test_df <- pokemon_df %>% filter(generation == 7)
-```
+
 
 <br>
 <br>
@@ -102,18 +100,29 @@ test_df <- pokemon_df %>% filter(generation == 7)
 
 
 
+
+
 ## Modeling
+
+### Spending our Data
+
+```{r prep-data}
+train_df <- pokemon_df %>% filter(generation != 7)
+test_df <- pokemon_df %>% filter(generation == 7)
+```
+
+
+
 
 ### Define Recipes
 
 
 ```{r create-recipes}
-logistic_rec <- recipe(is_legendary ~, data = train_df)
+logistic_rec <- recipe(is_legendary ~., data = train_df)
 
 
-xgboost_rec <- recipe(is_legendary ~, data = train_df)
+xgboost_rec <- recipe(is_legendary ~., data = train_df)
   
-
 ```
 
 
